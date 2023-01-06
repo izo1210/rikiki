@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Új játék indítása</h1>
+<div mat-dialog-content>
+  <p>Az előző játék el fog veszni.</p>
+  <p>Biztosan új játékot kezd?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false">Nem</button>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Igen</button>
+</div>

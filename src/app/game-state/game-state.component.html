@@ -1,0 +1,11 @@
+<div class="fullscreen flex-column-stretch">
+    <app-toolbar></app-toolbar>
+    <app-score-board 
+        [model]="(gameService.gameState$ | async)?.scoreBoard || emptyScoreBoard">
+    </app-score-board>
+    <app-number-buttons 
+        [model]="(gameService.gameState$ | async)?.numberButtons || emptyNumberButtons" 
+        (select)="gameService.setNumber($event)">
+    </app-number-buttons>
+</div>
+

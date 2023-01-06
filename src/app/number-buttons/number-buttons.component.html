@@ -1,0 +1,11 @@
+    <div class="flex-row-wrap" style="flex-grow: 1; ">
+        <button
+            *ngFor="let buttonState of model.buttonStates"
+            mat-raised-button
+            class="number-button"
+            [class]="model.selectedClass"
+            [disabled]="buttonState.disabled"
+            (click)="onClick(buttonState.value)">
+            {{buttonState.text}}
+        </button>
+    </div>

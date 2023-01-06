@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+    <button 
+        accesskey="z" 
+        mat-icon-button
+        matTooltip="Vissza az előző játékhoz"
+        (click)="onClickBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button 
+        accesskey="a"  
+        mat-icon-button
+        matTooltip="Hozzáad"
+        (click)="onClickAddPlayer()"
+        [disabled]="addPlayerDisabled">
+        <mat-icon>how_to_reg</mat-icon>
+    </button>
+    <button 
+        type="submit"
+        accesskey="t"
+        mat-icon-button 
+        matTooltip="Utolsó törlése"
+        (click)="onClickRemoveLastPlayer()"
+        [disabled]="removeLastPlayerDisabled">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button 
+        type="submit"
+        accesskey="r" 
+        mat-icon-button
+        matTooltip="Elsőt a végére"
+        (click)="onClickRotatePlayers()"
+        [disabled]="rotatePlayersDisabled">
+        <mat-icon>cached</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button
+    mat-stroked-button
+        accesskey="i" 
+        matTooltip="Új játék indítása"
+        (click)="onClickStartGame()"
+        [disabled]="startGameDisabled">
+        <mat-icon>rocket_launch</mat-icon>
+    </button>
+</mat-toolbar>
+
+    <!-- Name input -->
+    <mat-form-field style="width: 99%; margin: 5px;">
+        <mat-label>Kattintson ide új név megadásához!</mat-label>
+        <input 
+            #nameInput 
+            #nameModel="ngModel" 
+            matInput 
+            [(ngModel)]="name" 
+            required
+            maxlength="20"
+            [disabled]="maxPlayersLengthReached"
+            (keyup)="onNameKeyUp($event)"
+            placeholder="Írja be a nevet"/>
+    </mat-form-field>
+    <mat-error *ngIf="nameIsBlank">A név nem állhat csak szóközökből.</mat-error>
+    <mat-error *ngIf="nameExists">A megadott név már létezik.</mat-error>
+    <mat-error *ngIf="maxPlayersLengthReached">Nem vehető fel több játékos.</mat-error>
+
+
+<div class="flex-column-stretch">
+    <!-- List of names -->
+    <app-player-label 
+        *ngFor="let player of players; let i=index" 
+        [name]="player.name"
+        [index]="i"
+        [selected]="true">
+    </app-player-label>
+</div>

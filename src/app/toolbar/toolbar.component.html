@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <button 
+        accesskey="j"
+        mat-stroked-button
+        matTooltip="Új játék"
+        (click)="gameStateService.createNewGame()">
+        <mat-icon>account_box</mat-icon>
+    </button>
+    <span style="width: 10px"></span>
+    RIKIKI
+    <span class="spacer"></span>
+    <button 
+        accesskey="z"
+        mat-button 
+        matTooltip="Vissza"
+        [disabled]="gameStateService.undoHandler.isEmpty$ | async"
+        (click)="gameStateService.undoHandler.pop()">
+        <mat-icon>undo</mat-icon>
+    </button>
+    <button 
+        accesskey="y"
+        mat-button 
+        matTooltip="Előre"
+        [disabled]="gameStateService.redoHandler.isEmpty$ | async"
+        (click)="gameStateService.redoHandler.pop()">
+        <mat-icon>redo</mat-icon>
+    </button>
+</mat-toolbar>
